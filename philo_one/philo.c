@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 16:10:04 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/10 16:10:06 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/17 17:52:51 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ void		*philo_process(void *ptr_philo)
 		report_status(philo, philo->info, 2);
 		usleep(1000 * philo->info->time_to_sleep);
 		if (philo->info->stop)
-		{
-			pthread_mutex_unlock(&philo->info->mutex_stop);
 			return (0);
-		}
 		report_status(philo, philo->info, 3);
 	}
 }
