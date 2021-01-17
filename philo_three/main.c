@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:52:00 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/17 18:18:54 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/17 19:06:55 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,17 @@ static char	**get_sem_name_arr(int n)
 	char	*sem_num;
 
 	sem_arr = malloc(sizeof(char *) * n);
+	if (!sem_arr)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{
 		sem_num = ft_itoa(i);
+		if (!sem_num)
+			return (NULL);
 		sem_arr[i] = malloc(sizeof(char) * (6 + ft_strlen(sem_num)));
+		if (!sem_arr[i])
+			return (NULL);
 		ft_strlcpy(sem_arr[i], "/eat_", 6);
 		ft_strlcpy(sem_arr[i] + 5, sem_num, ft_strlen(sem_num) + 1);
 		sem_unlink(sem_arr[i]);
@@ -91,9 +97,14 @@ int			main(int argc, char **argv)
 
 	ret = get_info(argc, argv, &info);
 	if (ret == -1)
-		ft_putendl_fd("Wrong number of arguments", 1);
+		ft_putendl_fd("Wrong number of arguments", 2);
 	if (ret == -2)
-		ft_putendl_fd("Wrong arguments", 1);
+		ft_putendl_fd("Wrong arguments", 2);
+	if (!info.sem_name_arr)
+	{
+		ft_putendl_fd("Malloc error!", 2);
+		return (1);
+	}
 	if (ret != 1)
 		return (1);
 	if (!init_table(&philos, &info))
