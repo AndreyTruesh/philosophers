@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:52:00 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/09 04:57:30 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/17 18:18:54 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static int	get_info(int argc, char **argv, t_info *info)
 	}
 	info->ts = get_timestamp();
 	info->num = ft_atoi(argv[1]);
+	if (info->num > 200)
+		return (-2);
 	info->time_to_die = ft_atoi(argv[2]);
 	info->time_to_eat = ft_atoi(argv[3]);
 	info->time_to_sleep = ft_atoi(argv[4]);
