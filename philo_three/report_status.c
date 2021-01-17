@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:07:38 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/17 19:01:43 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/17 19:58:13 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void		report_status(t_philo *philo, t_info *info, int id)
 	if (id == 4)
 		printf("%d %d died\n",
 				(int)(get_timestamp() - info->ts), philo->num + 1);
-	sem_post(info->write);
+	if (id != 4)
+		sem_post(info->write);
 }
