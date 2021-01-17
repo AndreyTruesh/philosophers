@@ -6,7 +6,7 @@
 #    By: abibi <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/10 03:39:47 by abibi             #+#    #+#              #
-#    Updated: 2021/01/10 03:47:35 by abibi            ###   ########.fr        #
+#    Updated: 2021/01/17 17:57:07 by abibi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,3 +31,5 @@ fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all, re, clean, fclean
