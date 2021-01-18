@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:07:45 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/10 16:10:53 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/18 20:12:30 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,15 @@ int			start_threads(t_info info, t_philo *philos)
 
 	if (!(threads = malloc(sizeof(pthread_t) * (info.num + 1))))
 		return (-1);
-	if (!start_threads_even(info, philos, threads))
-		return (-1);
-	if (!start_threads_odd(info, philos, threads))
-		return (-1);
 	if (pthread_create(&mon, NULL, monitor, philos) != 0)
 	{
 		free(threads);
 		return (-2);
 	}
+	if (!start_threads_even(info, philos, threads))
+		return (-2);
+	if (!start_threads_odd(info, philos, threads))
+		return (-2);
 	join_threads(threads, mon, info);
 	free(threads);
 	return (1);
