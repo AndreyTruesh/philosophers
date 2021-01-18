@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:55:22 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/09 04:57:37 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/18 20:33:59 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	mem_free(t_philo *philos, t_info info, int *pid_arr)
 	sem_close(info.sem_stop);
 	sem_close(info.write);
 	sem_close(info.sem_meals);
+	sem_close(info.turn);
+	sem_unlink("/turn");
 	sem_unlink("/forks");
 	sem_unlink("/write");
 	sem_unlink("/stop");

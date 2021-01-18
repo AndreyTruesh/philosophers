@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:33:59 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/09 04:37:36 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/18 20:08:22 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void		close_sems(t_info info, pthread_t *threads)
 	sem_close(info.forks);
 	sem_close(info.sem_stop);
 	sem_close(info.write);
+	sem_close(info.turn);
+	sem_unlink("/turn");
 	sem_unlink("/forks");
 	sem_unlink("/write");
 	sem_unlink("/stop");

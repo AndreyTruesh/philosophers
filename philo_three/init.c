@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:51:22 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/09 04:57:22 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/18 20:30:49 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int		init_forks(t_info *info)
 	sem_unlink("/write");
 	sem_unlink("/stop");
 	sem_unlink("/meals");
+	sem_unlink("/turn");
 	info->forks = sem_open("/forks", O_CREAT | O_EXCL, 0644, info->num);
 	if (info->forks == SEM_FAILED)
 		return (0);
@@ -29,6 +30,9 @@ static int		init_forks(t_info *info)
 		return (0);
 	info->sem_meals = sem_open("/meals", O_CREAT | O_EXCL, 0644, 0);
 	if (info->sem_meals == SEM_FAILED)
+		return (0);
+	info->turn = sem_open("/turn", O_CREAT | O_EXCL, 0644, 1);
+	if (info->turn == SEM_FAILED)
 		return (0);
 	return (1);
 }

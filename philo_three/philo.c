@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:52:41 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/09 04:58:46 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/18 20:33:34 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 static int	take_forks(t_philo *philo)
 {
+	sem_wait(philo->info->turn);
 	sem_wait(philo->info->forks);
-	sem_wait(philo->eat);
 	if (philo->stop)
 	{
 		sem_post(philo->info->forks);
 		sem_post(philo->eat);
+		sem_post(philo->info->turn);
 		return (0);
 	}
 	report_status(philo, philo->info, 0);
-	sem_post(philo->eat);
 	sem_wait(philo->info->forks);
+	sem_post(philo->info->turn);
 	return (1);
 }
 
@@ -69,14 +70,12 @@ static void	*philo_process(void *ptr_philo)
 			return (0);
 		report_status(philo, philo->info, 2);
 		usleep(1000 * philo->info->time_to_sleep);
-		sem_wait(philo->eat);
 		if (philo->stop)
 		{
 			sem_post(philo->eat);
 			return (0);
 		}
 		report_status(philo, philo->info, 3);
-		sem_post(philo->eat);
 	}
 }
 

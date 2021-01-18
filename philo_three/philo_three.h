@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:54:41 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/09 04:59:08 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/18 20:31:19 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct	s_info
 	char			**sem_name_arr;
 	sem_t			*write;
 	sem_t			*forks;
+	sem_t			*turn;
 	sem_t			*sem_stop;
 	sem_t			*sem_meals;
 }				t_info;

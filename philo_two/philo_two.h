@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:34:32 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/09 04:39:02 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/18 19:37:02 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_info
 	int				time_to_sleep;
 	int				eat_times;
 	sem_t			*write;
+	sem_t			*turn;
 	sem_t			*forks;
 	sem_t			*sem_stop;
 	int				stop;
