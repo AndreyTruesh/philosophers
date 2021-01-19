@@ -6,7 +6,7 @@
 /*   By: abibi <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 04:52:41 by abibi             #+#    #+#             */
-/*   Updated: 2021/01/18 20:33:34 by abibi            ###   ########.fr       */
+/*   Updated: 2021/01/19 15:52:39 by abibi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ static int	eat(t_philo *philo)
 	report_status(philo, philo->info, 1);
 	philo->last_time_eat = get_timestamp();
 	if (philo->info->eat_times >= 0)
+	{
 		philo->eat_count++;
-	if (philo->eat_count == philo->info->eat_times)
-		sem_post(philo->info->sem_meals);
+		if (philo->eat_count == philo->info->eat_times)
+			sem_post(philo->info->sem_meals);
+	}
 	sem_post(philo->eat);
 	usleep(1000 * philo->info->time_to_eat);
 	sem_post(philo->info->forks);
